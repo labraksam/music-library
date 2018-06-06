@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<% include partials/head.ejs %>
+<body>
+  <title><%= data.id %> - My music website</title>
+  <% include partials/nav.ejs%>
+  <main>
+    <section class="music_info">
+      <p class="music_info_header">
+        <%= data.title %>
+      </a>
+      <p><%= data.artist %></p>
+      <p><%= data.album %></p>
+      <p><%= data.year %></p>
+      <p><a href="/">Back to list</a></p>
+    </section>
+  </main>
+</body>
+</html>

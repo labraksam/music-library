@@ -1,0 +1,85 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: Circular,Helvetica,Arial,sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #222326;
+  background-color: #fff;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+a {
+  text-decoration: none;
+}
+nav {
+  width: 10rem;
+  float: left;
+  height: 100%;
+  position: fixed;
+  background-color: #1db954;
+}
+nav a {
+  color: #fff;
+  border: none;
+  padding: 1rem;
+}
+main {
+  width: 100%;
+  overflow:hidden;
+  padding: 3rem;
+  position: absolute;
+  left: 10rem;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+.music_info_header {
+  font-size: 122px;
+  color: black;
+  font-weight: bold;
+  line-height: 80%;
+  letter-spacing: -5px;
+  margin-bottom: 30px;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: 'kern' 1;
+}
+.music_info {
+  width: 25rem;
+  display: inline-block;
+  padding: .5rem;
+}
+.music_info_link {
+  font-size: 42px;
+  color: black;
+  font-weight: 900;
+  letter-spacing: -.02em;
+  line-height: 1.2;
+  display: block;
+}
+.music_info_link:hover {
+  font-size: 42px;
+  font-weight: 900;
+  font-style: italic;
+  letter-spacing: -.02em;
+  line-height: 1.2;
+}
+
+
+.primaryButton {
+  color: #fff;
+  background-color: #1db954;
+  font-size: 14px;
+  line-height: 1;
+  border-radius: 500px;
+  padding: 18px 48px 16px;
+  transition-property: background-color,border-color,color,box-shadow,filter;
+  transition-duration: .3s;
+  border-width: 0;
+  letter-spacing: 2px;
+  min-width: 160px;
+  text-transform: uppercase;
+  white-space: normal;
+}

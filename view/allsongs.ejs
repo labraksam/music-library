@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<% include partials/head.ejs %>
+<body>
+  <title>Your music library</title>
+  <% include partials/nav.ejs%>
+  <main>
+  <% for (var index = 0; index < data.length; index++) { %>
+    <section class="music_info">
+      <a class="music_info_link" href="/<%= data[index].id %>">
+        <%= data[index].title %>
+      </a>
+      <p><%= data[index].artist %></p>
+    </section>
+  <% } %>
+  </main>
+</body>
+</html>
