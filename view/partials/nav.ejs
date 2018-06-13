@@ -1,8 +1,15 @@
 <nav>
   <ul>
-    <li><a href="/">All music</a></li>
     <% if (user) { %>
-      <li><a href="/profile/<%= data.username %>">Hello <%= user.username %>!</a></li>
+      <li>
+        <img src="/upload-profilephoto/<%= user.profilephoto %>" alt="">
+      </li>
+      <li>
+        <a href="/profile/<%= user.username %>"><%= user.username %></a>
+      </li>
+      <li>
+        <a href=/log-out>Log out</a>
+      </li>
     <% } else { %>
       <li><a href="/log-in">Login</a></li>
       <li><a href="/sign-up">Register</a></li>

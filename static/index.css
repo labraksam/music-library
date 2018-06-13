@@ -9,38 +9,51 @@ body {
   line-height: 1.5;
   color: #222326;
   background-color: #fff;
-  overflow-y: scroll;
-  overflow-x: hidden;
+  padding-top: 3rem;
 }
 a {
   text-decoration: none;
 }
 nav {
-  display: block;
-  top:0;
-  flex-flow: row wrap;
+  display: flex;
+  top: 0;
+  background-color: rgba(30,215,96,1);
+  box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.5);
+  position: fixed;
+  width: 100%;
+  z-index: 1000;
+  justify-content: flex-end;
+}
+nav img {
+  width: 1.625rem;
+  height: 1.625rem;
+  border-radius: 100%;
+}
+nav ul {
+  margin: 0 1rem;
 }
 nav li {
   display: inline-block;
-  color: #fff;
   border: none;
-  padding: 1rem;
+  padding: .5rem;
+  margin-left: -.35rem;
+  transition: .25s;
+  vertical-align: middle;
+  min-height: 100%;
+}
+nav li:hover {
+  background-color: rgba(30,215,96,.5);
 }
 nav a {
-  /* color: #fff; */
-  border: none;
-  font-size: 26px;
-  padding: 1rem;
-
   color: black;
+  border: none;
+  font-size: 1.25rem;
 }
-nav a:hover {
-  border-bottom: 3
-}
+
 main {
   width: 100%;
   overflow: hidden;
-  padding: 3rem;
+  padding: 0 3rem;
   display: block;
   overflow-y: scroll;
   overflow-x: hidden;
@@ -48,12 +61,12 @@ main {
 .page_header {
   font-size: 82px;
   color: black;
-  margin: 2rem 3rem 0rem 3rem;
+  margin: 2.5rem 3rem 0rem 3rem;
   font-weight: bold;
   line-height: 80%;
   letter-spacing: -5px;
   text-rendering: optimizeLegibility;
-  font-feature-settings: 'kern' 1;  margin-top: 2rem;
+  font-feature-settings: 'kern' 1;
   border-bottom: 7px solid rgba(29,185,84,1);
   padding-bottom: 1rem;
 }
@@ -66,15 +79,19 @@ main {
   color: inherit;
 }
 .music_info {
-  margin: .35rem;
+  margin: 1rem 0;
   width: 100%;
   display: block;
   padding: 1.5rem;
+  box-shadow: 5px 5px 20px 0px rgba(0,0,0,0.5);
   border-bottom: 7.5px solid rgba(30,215,96,0);
+  transition: .35s;
+  border-radius: 10px;
 }
 .music_info:hover {
   border-bottom: 7.5px solid rgba(30,215,96,1);
-  background-color: rgba(30,215,96,.25)
+  background-color: rgba(30,215,96,.25);
+  transform: scale(1.02);
 }
 
 .music_info_link {
@@ -94,26 +111,22 @@ main {
   display: block;
 }
 .primaryButton {
-  color: #fff;
-  background-color: #1db954;
-  font-size: 14px;
+  color: black;
+  background-color: rgba(30,215,96,1);
   line-height: 1;
   border-radius: 500px;
   padding: 18px 48px 16px;
   transition-property: background-color,border-color,color,box-shadow,filter;
   transition-duration: .3s;
   border-width: 0;
-  letter-spacing: 2px;
   min-width: 160px;
-  text-transform: uppercase;
-  white-space: normal;
   margin: .75rem;
   text-align: center;
   display: block;
+  transition: .35s;
 }
 .primaryButton:hover {
-  color: #fff;
-  background-color: #1ed760;
+  transform: scale(1.02);
 }
 .removeButton {
   background-color: #ff4747;

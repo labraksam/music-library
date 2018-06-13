@@ -14,7 +14,10 @@
       <p><%= data[index].songArtist %></p>
     </section>
   <% } %>
-  <a id="add_button" class="primaryButton" href="/add-song">Add a song</a>
+
+  <% if (user) { %>
+    <a id="add_button" class="primaryButton" href="/add-song">Add a song</a>
+  <% } %>
   </main>
   <% include partials/tail.ejs%>
 </body>

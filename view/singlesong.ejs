@@ -20,9 +20,11 @@
         <img alt="" src="/upload-albumcover/<%= data.songAlbumcover %>">
       <% } %>
 
-      <a href="/"><button class="primaryButton">Back to list</button></a>
-      <button id=js-remove data-id="<%= data._id %>" class="primaryButton removeButton">Remove</button>
 
+      <a href="/"><button class="primaryButton">Back to list</button></a>
+      <% if (user) { %>
+        <button id=js-remove data-id="<%= data._id %>" class="primaryButton removeButton">Remove</button>
+      <% } %>
     </section>
   </main>
   <% include partials/tail.ejs%>

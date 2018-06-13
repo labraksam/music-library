@@ -43,6 +43,7 @@ express()
   .post('/sign-up', uploadProfilePhoto.single('profilephoto'), signup)
   .get('/log-in', loginForm)
   .post('/log-in', login)
+  .get('/log-out', logout)
   .get('/:id', singlesong)
   .delete('/:id', removesong)
   .use(notFound)
@@ -52,6 +53,7 @@ function allsongs(req, res, next) {
   db.collection('music').find().toArray(done)
 
   function done(err, data) {
+    console.log(req.session.user);
     if (err) {
       next(err)
     } else {
@@ -74,14 +76,19 @@ function singlesong(req, res, next) {
     if (err) {
       next(err)
     } else {
-      res.render('singlesong.ejs', {data: data})
+      res.render('singlesong.ejs', {
+        data: data,
+        user: req.session.user
+      })
     }
   }
 }
 
 function addform(req, res) {
   if (req.session.user) {
-   res.render('addmusic.ejs')
+   res.render('addmusic.ejs',{
+     user: req.session.user
+   })
  } else {
    res.status(401).send('Credentials required')
  }
@@ -119,9 +126,13 @@ function removesong(req, res, next) {
   if (!req.session.user) {
     res.status(401).send('Credentials required')
     return
+  } else if (req.session.user.admin != false) {
+    res.status(401).send('You will have to be the admin to do this')
+    return
   }
 
-  var id = req.params.id
+  var id = req.params.id;
+
   db.collection('music').deleteOne({
     _id: mongo.ObjectID(id)
   }, done)
@@ -136,7 +147,9 @@ function removesong(req, res, next) {
 }
 
 function signupform(req, res, next) {
-  res.render('sign-up.ejs')
+  res.render('sign-up.ejs', {
+    user: req.session.user
+  })
 }
 
 function signup(req, res, next) {
@@ -189,16 +202,22 @@ function profile(req, res, next) {
   }, done)
 
   function done(err, data) {
+
     if (err) {
       next(err)
     } else {
-      res.render('profile.ejs', {data: data})
+      res.render('profile.ejs', {
+        data: data,
+        user: req.session.user
+      })
     }
   }
 }
 
 function loginForm(req, res, next) {
-  res.render('log-in.ejs')
+  res.render('log-in.ejs', {
+    user: req.session.user
+  })
 }
 
 function login(req, res, next) {
@@ -226,7 +245,12 @@ function login(req, res, next) {
     function onverify(match) {
       if (match) {
         req.session.user = {
-          username: user.username
+          username: data.username,
+          firstname: data.firstname,
+          additionalname: data.additionalname,
+          surname: data.surname,
+          birthday: data.birthday,
+          profilephoto: data.profilephoto
         };
         res.redirect('/')
       } else {
@@ -236,6 +260,15 @@ function login(req, res, next) {
   }
 }
 
+function logout(req, res, next) {
+  req.session.destroy(function (err) {
+    if (err) {
+      next(err)
+    } else {
+      res.redirect('/')
+    }
+  })
+}
 
 
 
