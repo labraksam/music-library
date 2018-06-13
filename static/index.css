@@ -16,58 +16,83 @@ a {
   text-decoration: none;
 }
 nav {
-  width: 10rem;
-  float: left;
-  height: 100%;
-  position: fixed;
-  background-color: #1db954;
+  display: block;
+  top:0;
+  flex-flow: row wrap;
 }
-nav a {
+nav li {
+  display: inline-block;
   color: #fff;
   border: none;
   padding: 1rem;
 }
+nav a {
+  /* color: #fff; */
+  border: none;
+  font-size: 26px;
+  padding: 1rem;
+
+  color: black;
+}
+nav a:hover {
+  border-bottom: 3
+}
 main {
   width: 100%;
-  overflow:hidden;
+  overflow: hidden;
   padding: 3rem;
-  position: absolute;
-  left: 10rem;
+  display: block;
   overflow-y: scroll;
   overflow-x: hidden;
 }
-.music_info_header {
-  font-size: 122px;
+.page_header {
+  font-size: 82px;
   color: black;
+  margin: 2rem 3rem 0rem 3rem;
   font-weight: bold;
   line-height: 80%;
   letter-spacing: -5px;
-  margin-bottom: 30px;
   text-rendering: optimizeLegibility;
-  font-feature-settings: 'kern' 1;
+  font-feature-settings: 'kern' 1;  margin-top: 2rem;
+  border-bottom: 7px solid rgba(29,185,84,1);
+  padding-bottom: 1rem;
+}
+.music_info_header {
+  font-size: 20;
+  font-weight: 900;
+  letter-spacing: -.02em;
+  line-height: 1.2;
+  margin: .5em 0 .25em;
+  color: inherit;
 }
 .music_info {
-  width: 25rem;
-  display: inline-block;
-  padding: .5rem;
+  margin: .35rem;
+  width: 100%;
+  display: block;
+  padding: 1.5rem;
+  border-bottom: 7.5px solid rgba(30,215,96,0);
 }
+.music_info:hover {
+  border-bottom: 7.5px solid rgba(30,215,96,1);
+  background-color: rgba(30,215,96,.25)
+}
+
 .music_info_link {
-  font-size: 42px;
+  font-size: 24px;
   color: black;
-  font-weight: 900;
+  font-weight: 800;
   letter-spacing: -.02em;
   line-height: 1.2;
   display: block;
 }
-.music_info_link:hover {
+.music_info_label {
   font-size: 42px;
-  font-weight: 900;
-  font-style: italic;
+  color: black;
+  font-weight: 500;
   letter-spacing: -.02em;
   line-height: 1.2;
+  display: block;
 }
-
-
 .primaryButton {
   color: #fff;
   background-color: #1db954;
@@ -82,4 +107,59 @@ main {
   min-width: 160px;
   text-transform: uppercase;
   white-space: normal;
+  margin: .75rem;
+  text-align: center;
+  display: block;
+}
+.primaryButton:hover {
+  color: #fff;
+  background-color: #1ed760;
+}
+.removeButton {
+  background-color: #ff4747;
+}
+.removeButton:hover {
+  background-color: red;
+}
+form {
+  width: 50%;
+}
+form label {
+  font-size: 1.25rem
+}
+form label,
+form input {
+  width: 100%;
+  line-height: 2rem;
+  border-radius: 5px;
+  border: none;
+  font-size: 1.25rem;
+}
+form input[type="text"],
+form input[type="file"],
+form input[type="password"],
+form input[type="date"] {
+  margin-bottom: .75rem;
+  padding: .5rem 2rem;
+}
+
+form input[type="text"],
+form input[type="password"],
+form input[type="date"] {
+  box-shadow: inset 2.5px 2.5px 9px 2px rgba(0,0,0,0.21);
+}
+
+form fieldset {
+  padding: 40px 0;
+  border: none;
+  border-bottom: 7px solid rgba(29,185,84,.5);
+}
+form fieldset:last-of-type {
+  margin-bottom: 60px;
+  border: none;
+}
+
+img {
+  max-width: 100%;
+  max-height: 15em
 }

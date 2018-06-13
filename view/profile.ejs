@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<% include partials/head.ejs %>
+<body>
+  <title><%= data.username %> - My music website</title>
+  <% include partials/nav.ejs%>
+  <header class="page_header"><%= data.username %></header>
+  <main>
+    <section class="music_details">
+      <p class="music_info_label">Name</p>
+      <p class="music_info_link"><%= data.firstname %></p>
+      <% if(data.additionalname) { %>
+        <p class="music_info_label">Additional</p>
+        <p class="music_info_link"><%= data.additionalname %></p>
+      <% } %>
+      <p class="music_info_label">Surname</p>
+      <p class="music_info_link"><%= data.surname %></p>
+      <p class="music_info_label">Birthday</p>
+      <p class="music_info_link"><%= data.birthday %></p>
+      <p class="music_info_label">Profilephoto</p>
+      <p class="music_info_link">
+        <img src="upload-profilephoto/<%= data.profilephoto %>" alt=""></p>
+      <a href="/"><button class="primaryButton">Back to list</button></a>
+      <button id=js-remove data-id="<%= data._id %>" class="primaryButton removeButton">Remove</button>
+
+    </section>
+  </main>
+  <% include partials/tail.ejs%>
+</body>
+</html>

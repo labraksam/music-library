@@ -1,7 +1,13 @@
 <nav>
   <ul>
     <li><a href="/">All music</a></li>
-    <li><a href="#">Login</a></li>
-    <li><a href="#">Register</a></li>
+    <% if (user) { %>
+      <li><a href="/profile/<%= data.username %>">Hello <%= user.username %>!</a></li>
+    <% } else { %>
+      <li><a href="/log-in">Login</a></li>
+      <li><a href="/sign-up">Register</a></li>
+    <% } %>
+
+
   </ul>
 </nav>

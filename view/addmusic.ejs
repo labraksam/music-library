@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<% include partials/head.ejs %>
+<body>
+  <title>My music website</title>
+  <% include partials/nav.ejs%>
+  <header class="page_header">Add music</header>
+  <main>
+    <form action="/" method="post" enctype="multipart/form-data">
+      <fieldset>
+      <label for="title_input">Title</label>
+        <input type="text" name="title" id="title_input">
+        <label for="artist_input">Artist</label>
+        <input type="text" name="artist" id="artist_input">
+        <label for="album_input">Album</label>
+        <input type="text" name="album" id="album_input">
+      </fieldset>
+      <fieldset>
+        <label for="year_input">Year</label>
+        <input type="text" name="year" id="year_input">
+        <label for="year_input">Duration</label>
+        <input type="text" name="duration" id="duration_input">
+        <label for="year_input">Song releasedate</label>
+        <input type="date" name="song_releasedate" id="song_releasedate_input">
+      </fieldset>
+      <fieldset>
+        <label for="albumcover_input">Image</label>
+        <input type="file" name="albumcover" id="albumcover_input" accept="image/*">
+        <input type="submit" class="primaryButton">
+      </fieldset>
+    </form>
+  </main>
+  <% include partials/tail.ejs%>
+</body>
+</html>

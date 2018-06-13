@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<% include partials/head.ejs %>
+<body>
+  <title>Your music library</title>
+  <% include partials/nav.ejs%>
+  <header class="page_header">Sign up</header>
+  <main>
+    <section class="sign_up_form">
+      <form action="/sign-up" method="post" enctype="multipart/form-data">
+        <fieldset>
+          <label for="username">Username</label>
+          <input type="text" id="username" name="username">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password">
+        </fieldset>
+        <fieldset>
+          <label for="firstname">Firstname</label>
+          <input type="text" id="firstname" name="firstname" placeholder="ex. Guus">
+          <label for="additional_name">Additional name</label>
+          <input type="text" id="additional_name" name="additional_name" placeholder="ex. de">
+          <label for="surname">Surname</label>
+          <input type="text" id="surname" name="surname" placeholder="ex. Vries">
+          <label for="birthday">Birthday</label>
+          <input type="date" id="birthday" name="birthday">
+        </fieldset>
+        <fieldset>
+          <label for="profilephoto">Image</label>
+          <input type="file" name="profilephoto" id="profilephoto" accept="image/*">
+        </fieldset>
+        <button class="primaryButton">Sign up</button>
+      </form>
+    </section>
+  </main>
+  <% include partials/tail.ejs%>
+</body>
+</html>

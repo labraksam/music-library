@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<% include partials/head.ejs %>
+<body>
+  <title>Your music library</title>
+  <% include partials/nav.ejs%>
+  <header class="page_header">Login</header>
+  <main>
+    <section class="login_form">
+      <form action="/log-in" method="post">
+        <fieldset>
+          <label for="username">Username</label>
+          <input type="text" id="username" name="username">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password">
+        </fieldset>
+        <button class="primaryButton">Login</button>
+      </form>
+    </section>
+  </main>
+  <% include partials/tail.ejs%>
+</body>
+</html>

@@ -4,16 +4,27 @@
 <body>
   <title><%= data.id %> - My music website</title>
   <% include partials/nav.ejs%>
+  <header class="page_header"><%= data.songTitle %></header>
   <main>
-    <section class="music_info">
-      <p class="music_info_header">
-        <%= data.title %>
-      </a>
-      <p><%= data.artist %></p>
-      <p><%= data.album %></p>
-      <p><%= data.year %></p>
-      <p><a href="/">Back to list</a></p>
+    <section class="music_details">
+      <p class="">Artist</p>
+      <p class="music_info_link"><%= data.songArtist %></p>
+      <p class="">Album</p>
+      <p class="music_info_link"><%= data.songAlbum %></p>
+      <p class="">Duration</p>
+      <p class="music_info_link"><%= data.songDuration %></p>
+      <p class="">Release date</p>
+      <p class="music_info_link"><%= data.songReleaseDate %></p>
+
+      <% if (data.songAlbumcover) { %>
+        <img alt="" src="/upload-albumcover/<%= data.songAlbumcover %>">
+      <% } %>
+
+      <a href="/"><button class="primaryButton">Back to list</button></a>
+      <button id=js-remove data-id="<%= data._id %>" class="primaryButton removeButton">Remove</button>
+
     </section>
   </main>
+  <% include partials/tail.ejs%>
 </body>
 </html>
