@@ -53,7 +53,6 @@ function allsongs(req, res, next) {
   db.collection('music').find().toArray(done)
 
   function done(err, data) {
-    console.log(req.session.user);
     if (err) {
       next(err)
     } else {
@@ -123,27 +122,33 @@ function addsong(req, res, next) {
 }
 
 function removesong(req, res, next) {
-  if (!req.session.user) {
-    res.status(401).send('Credentials required')
-    return
-  } else if (req.session.user.admin != false) {
-    res.status(401).send('You will have to be the admin to do this')
-    return
-  }
+  console.log(req.session);
+  console.log(req.session.user);
 
-  var id = req.params.id;
+  // var id = req.params.id;
+  //
+  // db.collection('music').deleteOne({
+  //   _id: mongo.ObjectID(id)
+  // }, done)
 
-  db.collection('music').deleteOne({
-    _id: mongo.ObjectID(id)
-  }, done)
 
-  function done(err) {
-    if (err) {
-      next(err)
-    } else {
-      res.json({status: 'ok'})
-    }
-  }
+  // console.log(req.session);
+
+  // if (!req.session.user) {
+  // res.status(401).send('Credentials required')
+  // return
+  // } else if (req.session.user.admin != 1) {
+  //   res.status(401).send('You will have to be the admin to do this')
+  //   return
+  // }
+
+  // function done(err) {
+  //   if (err) {
+  //     next(err)
+  //   } else {
+  //     res.json({status: 'ok'})
+  //   }
+  // }
 }
 
 function signupform(req, res, next) {
@@ -250,7 +255,8 @@ function login(req, res, next) {
           additionalname: data.additionalname,
           surname: data.surname,
           birthday: data.birthday,
-          profilephoto: data.profilephoto
+          profilephoto: data.profilephoto,
+          admin: data.admin
         };
         res.redirect('/')
       } else {
