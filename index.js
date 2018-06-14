@@ -36,16 +36,16 @@ express()
   .set('view engine', 'ejs')
   .set('views', 'view')
   .get('/', allsongs)
-  .get('/profile/:username', profile)
-  .get('/add-song', addform)
+  .get('/music/add-song', addform)
   .post('/', uploadAlbumcover.single('albumcover'), addsong)
-  .get('/sign-up', signupform)
-  .post('/sign-up', uploadProfilePhoto.single('profilephoto'), signup)
-  .get('/log-in', loginForm)
-  .post('/log-in', login)
-  .get('/log-out', logout)
-  .get('/:id', singlesong)
-  .delete('/:id', removesong)
+  .get('/user/sign-up', signupform)
+  .post('/user/sign-up', uploadProfilePhoto.single('profilephoto'), signup)
+  .get('/user/log-in', loginForm)
+  .post('/user/log-in', login)
+  .get('/user/log-out', logout)
+  .get('/user/:username', profile)
+  .get('/music/:id', singlesong)
+  .delete('/music/:id', removesong)
   .use(notFound)
   .listen(1900)
 
@@ -116,7 +116,7 @@ function addsong(req, res, next) {
     if (err) {
       next(err)
     } else {
-      res.redirect('/' + data.insertedId)
+      res.redirect('/music/' + data.insertedId)
     }
   }
 }
@@ -193,7 +193,7 @@ function signup(req, res, next) {
         req.session.user = {
           username: username
         }
-        res.redirect('/profile/' + username)
+        res.redirect('/user/' + username)
       }
     }
   }
@@ -233,7 +233,7 @@ function login(req, res, next) {
     res.status(400).send('Username or password are missing')
     return
   }
-  //
+
   db.collection('users').findOne({
     username: username
   }, done)
@@ -258,6 +258,7 @@ function login(req, res, next) {
           profilephoto: data.profilephoto,
           admin: data.admin
         };
+        console.log(req.session.user);
         res.redirect('/')
       } else {
         res.status(401).send('Password incorrect')

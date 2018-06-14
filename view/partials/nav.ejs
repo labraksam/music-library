@@ -5,14 +5,14 @@
         <img src="/upload-profilephoto/<%= user.profilephoto %>" alt="">
       </li>
       <li>
-        <a href="/profile/<%= user.username %>"><%= user.username %></a>
+        <a href="/user/<%= user.username %>"><%= user.username %></a>
       </li>
       <li>
-        <a href=/log-out>Log out</a>
+        <a href=/user/log-out>Log out</a>
       </li>
     <% } else { %>
-      <li><a href="/log-in">Login</a></li>
-      <li><a href="/sign-up">Register</a></li>
+      <li><a href="/user/log-in">Login</a></li>
+      <li><a href="/user/sign-up">Register</a></li>
     <% } %>
 
 

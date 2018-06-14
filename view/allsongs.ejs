@@ -8,7 +8,7 @@
   <main>
   <% for (var index = 0; index < data.length; index++) { %>
     <section class="music_info">
-      <a class="music_info_link" href="/<%= data[index]._id %>">
+      <a class="music_info_link" href="/music/<%= data[index]._id %>">
         <%= data[index].songTitle %>
       </a>
       <p><%= data[index].songArtist %></p>
@@ -16,7 +16,7 @@
   <% } %>
 
   <% if (user) { %>
-    <a id="add_button" class="primaryButton" href="/add-song">Add a song</a>
+    <a id="add_button" class="primaryButton" href="/music/add-song">Add a song</a>
   <% } %>
   </main>
   <% include partials/tail.ejs%>
