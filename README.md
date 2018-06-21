@@ -59,8 +59,34 @@ npm install
 - Your project is hosted on your localhost, when you go to `http://localhost:1900/`
 
 ## Technology
+## Technology used
 
+For this project I used:
+- [Node.js](https://nodejs.org/en/) the base where my project is made in
+    - [Body paser](https://github.com/expressjs/body-parser) used to
+    get all the input values of a form.
+    - [Multer](https://github.com/expressjs/multer) used to parse my images
+    - [Dotenv](https://www.npmjs.com/package/dotenv) I've used this to save local your secret keys without leaking to the outside
+    - [Argon2](https://www.npmjs.com/package/argon2) saved my password a lot safer.
+    - [Nodemon](https://nodemon.io/) Restart the server automatically when you changed something in the code.  
+- [Express](https://www.express.com/) A framework of node what i used for this project for easier coding.
+   -[Express-session](https://github.com/remy/nodemon)
 ## To-do list
+- [x] Make a server
+- [x] Make a music library
+- [x] Add function for add music to the library
+- [x] Delete function for delete music from the library
+- [x] Make a database connection with [MongoDB](https://www.mongodb.com/)
+- [x] Let people register themself and save the data in the database  
+- [x] Let people login and store the session
+- [x] Make an administrator account who can change everything
+- [ ] Good error handling for the users
+- [ ] Favorite songs
+- [ ] Make a playlist where other users can put their favorite song into but you don't
+- [ ] Make matches based on the genre you listened in the past.
+- [ ] Let users chat with a match 
+- [ ] Use the [Spotify API](https://developer.spotify.com/documentation/web-api/) so I can use the database of Spotify
+
 
 ## Conclusion
 
