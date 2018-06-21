@@ -218,9 +218,6 @@ function removesong(req, res, next) {
   if (!req.session.user) {
     res.status(401).send('You must be logged in')
     return
-  } else if (req.session.user.admin != 1) {
-    res.status(401).send('You will have to be the admin to do this')
-    return
   }
 
   function done(err) {

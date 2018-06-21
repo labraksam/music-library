@@ -56,7 +56,14 @@ Now we were done with the installation of MongoDB
 npm install
 ```
 
-- Your project is hosted on `http://localhost:1900/`
+- Your project is hosted on your localhost, when you go to `http://localhost:1900/`
+
+## Technology
+
+## To-do list
+
+## Conclusion
+
 
 
 

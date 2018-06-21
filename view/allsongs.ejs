@@ -2,9 +2,9 @@
 <html lang="en">
 <% include partials/head.ejs %>
 <body>
-  <title>Your music library</title>
+  <title>Music library</title>
   <% include partials/nav.ejs%>
-  <header class="page_header">All your music</header>
+  <header class="page_header">Music of everybody</header>
   <main>
   <% if (data.length !== 0) { %>
     <% for (var index = 0; index < data.length; index++) { %>
@@ -16,9 +16,8 @@
       </section>
     <% } %>
   <% } else { %>
-  <p>Empty list</p>
+    <p>Empty list</p>
   <% } %>
-
   <% if (user) { %>
     <a id="add_button" class="primaryButton" href="/music/add-song">Add a song</a>
   <% } %>
