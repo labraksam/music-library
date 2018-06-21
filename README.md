@@ -58,7 +58,12 @@ npm install
 
 - Your project is hosted on your localhost, when you go to `http://localhost:1900/`
 
-## Technology
+## Run project
+If you want to run the server you can use the code below
+```
+nodemon server/index.js
+```
+
 ## Technology used
 
 For this project I used:
@@ -70,7 +75,8 @@ For this project I used:
     - [Argon2](https://www.npmjs.com/package/argon2) saved my password a lot safer.
     - [Nodemon](https://nodemon.io/) Restart the server automatically when you changed something in the code.  
 - [Express](https://www.express.com/) A framework of node what i used for this project for easier coding.
-   -[Express-session](https://github.com/remy/nodemon)
+  - [Express-session](https://github.com/remy/nodemon)
+
 ## To-do list
 - [x] Make a server
 - [x] Make a music library
@@ -84,12 +90,12 @@ For this project I used:
 - [ ] Favorite songs
 - [ ] Make a playlist where other users can put their favorite song into but you don't
 - [ ] Make matches based on the genre you listened in the past.
-- [ ] Let users chat with a match 
+- [ ] Let users chat with a match
 - [ ] Use the [Spotify API](https://developer.spotify.com/documentation/web-api/) so I can use the database of Spotify
 
 
 ## Conclusion
-
+I learned a lot when is made the music library. The first 5 weeks we've learned everything but it was pretty overwhelming. I thought it was too much for me to understand. I was surprised that I know the matter better at the end of the course. It was nice to make a product what really works and is understandable for me.
 
 
 
