@@ -2,7 +2,7 @@
 <html lang="en">
 <% include partials/head.ejs %>
 <body>
-  <title><%= data.id %> - My music website</title>
+  <title>My music website</title>
   <% include partials/nav.ejs%>
   <header class="page_header"><%= data.songTitle %></header>
   <main>
@@ -20,11 +20,14 @@
         <img alt="" src="/upload-albumcover/<%= data.songAlbumcover %>">
       <% } %>
 
-
       <a href="/"><button class="primaryButton">Back to list</button></a>
-      <% if (user) { %>
-        <button id=js-remove data-id="<%= data._id %>" class="primaryButton removeButton">Remove</button>
-      <% } %>
+
+      <% if (user) {
+        if ((user.username == data.addSongProfile) || (user.admin == true)) { %>
+            <button id=js-remove data-id="<%= data._id %>" class="primaryButton removeButton">Remove</button>
+            <a href="/music/update-song/<%= data._id %>"><button class="primaryButton updateButton">Update</button></a>
+      <% }
+      } %>
     </section>
   </main>
   <% include partials/tail.ejs%>

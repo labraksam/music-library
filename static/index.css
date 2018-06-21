@@ -17,7 +17,7 @@ a {
 nav {
   display: flex;
   top: 0;
-  background-color: rgba(30,215,96,1);
+  background-color: rgba(29,185,84,1);
   box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.5);
   position: fixed;
   width: 100%;
@@ -42,7 +42,7 @@ nav li {
   min-height: 100%;
 }
 nav li:hover {
-  background-color: rgba(30,215,96,.5);
+  background-color: rgba(29,185,84,.5);
 }
 nav a {
   color: black;
@@ -84,26 +84,30 @@ main {
   display: block;
   padding: 1.5rem;
   box-shadow: 5px 5px 20px 0px rgba(0,0,0,0.5);
-  border-bottom: 7.5px solid rgba(30,215,96,0);
+  border-bottom: 7.5px solid rgba(29,185,84,0);
   transition: .35s;
   border-radius: 10px;
 }
 .music_info:hover {
-  border-bottom: 7.5px solid rgba(30,215,96,1);
-  background-color: rgba(30,215,96,.25);
+  border-bottom: 7.5px solid rgba(29,185,84,1);
+  background-color: rgba(29,185,84,.25);
   transform: scale(1.02);
 }
 
 .music_info_link {
-  font-size: 24px;
+  font-size: 42px;
   color: black;
   font-weight: 800;
   letter-spacing: -.02em;
   line-height: 1.2;
   display: block;
+  min-width: 20rem;
+  width: 20rem;
+  border-bottom: 7.5px solid rgba(29,185,84,1);
+  margin-bottom: 1rem;
 }
 .music_info_label {
-  font-size: 42px;
+  font-size: 32px;
   color: black;
   font-weight: 500;
   letter-spacing: -.02em;
@@ -112,7 +116,7 @@ main {
 }
 .primaryButton {
   color: black;
-  background-color: rgba(30,215,96,1);
+  background-color: rgba(29,185,84,1);
   line-height: 1;
   border-radius: 500px;
   padding: 18px 48px 16px;
@@ -124,8 +128,25 @@ main {
   text-align: center;
   display: block;
   transition: .35s;
+  box-shadow: 5px 5px 20px 0px rgba(0,0,0,0.5);
 }
-.primaryButton:hover {
+.secondaryButton {
+  color: black;
+  line-height: 1;
+  border-radius: 500px;
+  padding: 18px 48px 16px;
+  transition-property: background-color,border-color,color,box-shadow,filter;
+  transition-duration: .3s;
+  border-width: 0;
+  box-shadow: 5px 5px 20px 0px rgba(0,0,0,0.5);
+  margin: .75rem;
+  text-align: center;
+  display: block;
+  width: 10rem;
+  transition: .35s;
+}
+.primaryButton:hover,
+.secondaryButton:hover {
   transform: scale(1.02);
 }
 .removeButton {
@@ -133,6 +154,9 @@ main {
 }
 .removeButton:hover {
   background-color: red;
+}
+.updateButton {
+  background-color: rgba(255,165,0,.75);
 }
 form {
   width: 50%;
@@ -151,14 +175,18 @@ form input {
 form input[type="text"],
 form input[type="file"],
 form input[type="password"],
-form input[type="date"] {
+form input[type="date"],
+form input[type="number"],
+form input[type="time"] {
   margin-bottom: .75rem;
   padding: .5rem 2rem;
 }
 
 form input[type="text"],
 form input[type="password"],
-form input[type="date"] {
+form input[type="date"],
+form input[type="number"],
+form input[type="time"] {
   box-shadow: inset 2.5px 2.5px 9px 2px rgba(0,0,0,0.21);
 }
 

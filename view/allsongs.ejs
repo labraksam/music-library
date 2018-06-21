@@ -6,13 +6,17 @@
   <% include partials/nav.ejs%>
   <header class="page_header">All your music</header>
   <main>
-  <% for (var index = 0; index < data.length; index++) { %>
-    <section class="music_info">
-      <a class="music_info_link" href="/music/<%= data[index]._id %>">
-        <%= data[index].songTitle %>
-      </a>
-      <p><%= data[index].songArtist %></p>
-    </section>
+  <% if (data.length !== 0) { %>
+    <% for (var index = 0; index < data.length; index++) { %>
+      <section class="music_info">
+        <a class="music_info_link" href="/music/<%= data[index]._id %>">
+          <%= data[index].songTitle %>
+        </a>
+        <p><%= data[index].songArtist %></p>
+      </section>
+    <% } %>
+  <% } else { %>
+  <p>Empty list</p>
   <% } %>
 
   <% if (user) { %>

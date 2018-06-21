@@ -32,10 +32,11 @@ express()
     saveUninitialized: true,
     secret: process.env.SESSION_SECRET
   }))
-
   .set('view engine', 'ejs')
   .set('views', 'view')
   .get('/', allsongs)
+
+  .get('/music/all-your-music', allyoursongs)
   .get('/music/add-song', addform)
   .post('/', uploadAlbumcover.single('albumcover'), addsong)
   .get('/user/sign-up', signupform)
@@ -44,6 +45,8 @@ express()
   .post('/user/log-in', login)
   .get('/user/log-out', logout)
   .get('/user/:username', profile)
+  .get('/music/update-song/:id', updateform)
+  .post('/music/update-song/:id', uploadAlbumcover.single('albumcover'), updatesong)
   .get('/music/:id', singlesong)
   .delete('/music/:id', removesong)
   .use(notFound)
@@ -51,6 +54,23 @@ express()
 
 function allsongs(req, res, next) {
   db.collection('music').find().toArray(done)
+
+  function done(err, data) {
+    if (err) {
+      next(err)
+    } else {
+      res.render('allsongs.ejs', {
+        data: data,
+        user: req.session.user
+      })
+    }
+  }
+}
+
+function allyoursongs(req, res, next) {
+  db.collection('music').find({
+    addSongProfile: req.session.user.username
+  }).toArray(done)
 
   function done(err, data) {
     if (err) {
@@ -85,76 +105,136 @@ function singlesong(req, res, next) {
 
 function addform(req, res) {
   if (req.session.user) {
-   res.render('addmusic.ejs',{
-     user: req.session.user
-   })
- } else {
-   res.status(401).send('Credentials required')
- }
+    res.render('addmusic.ejs',{
+      user: req.session.user
+    })
+  } else {
+    res.status(401).send('You must be logged in')
+    return
+  }
 }
 
 function addsong(req, res, next) {
   if (!req.session.user) {
-    res.status(401).send('Credentials required')
+    res.status(401).send('You must be logged in')
+    res.redirect('/')
     return
   }
 
   var id = req.params.id;
 
-  db.collection('music').insertOne({
-    id: id,
+  db.collection('music').findOne({
+    songTitle: req.body.title
+  }, songExistsCheck)
+
+
+  function songExistsCheck(err, data) {
+    if (!data) {
+      db.collection('music').insertOne({
+        id: id,
+        songTitle: req.body.title,
+        songArtist: req.body.artist,
+        songAlbum: req.body.album,
+        songYear: req.body.year,
+        songDuration: req.body.duration,
+        songReleaseDate: req.body.song_releasedate,
+        songAlbumcover: req.file ? req.file.filename : null,
+        addSongProfile: req.session.user.username
+      }, done)
+
+      function done(err, data) {
+        if (err) {
+          next(err)
+        } else {
+          res.redirect('/music/' + data.insertedId)
+        }
+      }
+    } else {
+      res.status(409).send('This song already exists')
+    }
+  }
+
+
+}
+
+function updateform(req, res, next) {
+
+  var id = req.params.id;
+
+  db.collection('music').findOne({
+    _id: mongo.ObjectID(id)
+  }, done)
+
+  function done(err, data) {
+    console.log(data.addSongProfile);
+    if (err) {
+      next(err)
+    } else {
+      res.render('update-song.ejs', {
+        data: data,
+        user: req.session.user
+      })
+    }
+  }
+}
+
+function updatesong(req, res, next) {
+  var id = req.params.id;
+  if (!req.session.user) {
+    res.status(401).send('You must be logged in')
+  }
+
+  db.collection('music').update({
+    _id : mongo.ObjectID(id)
+  }, {
     songTitle: req.body.title,
     songArtist: req.body.artist,
     songAlbum: req.body.album,
     songYear: req.body.year,
     songDuration: req.body.duration,
     songReleaseDate: req.body.song_releasedate,
-    songAlbumcover: req.file ? req.file.filename : null
+    songAlbumcover: req.file ? req.file.filename : null,
+    addSongProfile: req.session.user.username
   }, done)
 
   function done(err, data) {
     if (err) {
       next(err)
     } else {
-      res.redirect('/music/' + data.insertedId)
+      res.redirect('/')
+      return
+    }
+  }
+
+}
+
+function removesong(req, res, next) {
+  var id = req.params.id;
+
+  db.collection('music').deleteOne({
+    _id: mongo.ObjectID(id)
+  }, done)
+
+  if (!req.session.user) {
+    res.status(401).send('You must be logged in')
+    return
+  } else if (req.session.user.admin != 1) {
+    res.status(401).send('You will have to be the admin to do this')
+    return
+  }
+
+  function done(err) {
+    if (err) {
+      next(err)
+    } else {
+      res.json({status: 'ok'})
+      return
     }
   }
 }
 
-function removesong(req, res, next) {
-  console.log(req.session);
-  console.log(req.session.user);
-
-  // var id = req.params.id;
-  //
-  // db.collection('music').deleteOne({
-  //   _id: mongo.ObjectID(id)
-  // }, done)
-
-
-  // console.log(req.session);
-
-  // if (!req.session.user) {
-  // res.status(401).send('Credentials required')
-  // return
-  // } else if (req.session.user.admin != 1) {
-  //   res.status(401).send('You will have to be the admin to do this')
-  //   return
-  // }
-
-  // function done(err) {
-  //   if (err) {
-  //     next(err)
-  //   } else {
-  //     res.json({status: 'ok'})
-  //   }
-  // }
-}
-
 function signupform(req, res, next) {
-  res.render('sign-up.ejs', {
-    user: req.session.user
-  })
+  res.render('sign-up.ejs')
 }
 
 function signup(req, res, next) {
@@ -170,7 +250,7 @@ function signup(req, res, next) {
     if (err) {
       next(err)
     } else if (data) {
-      res.status(409).send('Username already in use')
+      res.status(409).send('Username already exists')
     } else {
       argon2.hash(password).then(onhash, next)
     }
@@ -184,7 +264,8 @@ function signup(req, res, next) {
       additionalname: req.body ? req.body.additional_name : null,
       surname: req.body.surname,
       birthday: req.body.birthday,
-      profilephoto: req.file ? req.file.filename : null
+      profilephoto: req.file ? req.file.filename : null,
+      admin: false
     }, oninsert)
     function oninsert(err) {
       if (err) {
@@ -243,7 +324,7 @@ function login(req, res, next) {
     if (err) {
       next(err)
     } else if (data) {
-      argon2.verify(data.hash, password).then(onverify, next)
+      argon2.verify(data.hash, password).then(onverify)
     } else {
       res.status(401).send('Username does not exist')
     }
@@ -257,13 +338,13 @@ function login(req, res, next) {
           birthday: data.birthday,
           profilephoto: data.profilephoto,
           admin: data.admin
-        };
-        console.log(req.session.user);
-        res.redirect('/')
+        }
       } else {
         res.status(401).send('Password incorrect')
       }
+      res.redirect('/')
     }
+
   }
 }
 
@@ -276,9 +357,6 @@ function logout(req, res, next) {
     }
   })
 }
-
-
-
 
 function notFound(req, res) {
   res.status(404).render('not-found.ejs')

@@ -1,6 +1,12 @@
 <nav>
   <ul>
+    <li>
+      <a href="/">All songs</a>
+    </li>
     <% if (user) { %>
+      <li>
+        <a href="/music/all-your-music">Your own songs</a>
+      </li>
       <li>
         <img src="/upload-profilephoto/<%= user.profilephoto %>" alt="">
       </li>

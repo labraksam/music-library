@@ -5,7 +5,7 @@ removebtn.addEventListener('click', onremove)
 function onremove(ev) {
   var node = ev.target
   var id = node.dataset.id
-  
+
   fetch('/music/' + id, {method: 'delete'})
     .then(onresponse)
     .then(onload, onfail)

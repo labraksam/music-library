@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<% include partials/head.ejs %>
+<body>
+  <title>My music website</title>
+  <% include partials/nav.ejs%>
+  <header class="page_header">Update <%= data.songTitle %></header>
+  <main>
+    <form action="/music/update-song/<%= data._id %>" method="post" enctype="multipart/form-data">
+      <fieldset>
+      <label for="title_input">Title</label>
+        <input type="text" name="title" id="title_input" value="<%= data.songTitle %>">
+        <label for="artist_input">Artist</label>
+        <input type="text" name="artist" id="artist_input" value="<%= data.songArtist %>">
+        <label for="album_input">Album</label>
+        <input type="text" name="album" id="album_input" value="<%= data.songArtist %>">
+      </fieldset>
+      <fieldset>
+        <label for="year_input">Year</label>
+        <input type="number" min="1900" max="2018" step="1" name="year" id="year_input" value="<%= data.songYear %>">
+        <label for="duration_input">Duration</label>
+        <input type="time" name="duration" id="duration_input" value="<%= data.songDuration %>">
+        <label for="song_releasedate_input">Song releasedate</label>
+        <input type="date" name="song_releasedate" id="song_releasedate_input" value="<%= data.songReleaseDate %>">
+      </fieldset>
+      <fieldset>
+        <label for="albumcover_input">Albumcover</label>
+        <input type="file" name="albumcover" id="albumcover_input" accept="image/*">
+        <img src="/upload-albumcover/<%= data.songAlbumcover %>" alt="">
+        <input type="submit" class="primaryButton">
+        <input type="reset" class="secondaryButton">
+      </fieldset>
+    </form>
+  </main>
+  <% include partials/tail.ejs%>
+</body>
+</html>

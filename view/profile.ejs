@@ -7,18 +7,18 @@
   <header class="page_header"><%= data.username %></header>
   <main>
     <section class="music_details">
-      <p class="music_info_label">Name</p>
-      <p class="music_info_link"><%= data.firstname %></p>
+      <p class="music_info_link">Name</p>
+      <p class="music_info_label"><%= data.firstname %></p>
       <% if(data.additionalname) { %>
-        <p class="music_info_label">Additional</p>
-        <p class="music_info_link"><%= data.additionalname %></p>
+        <p class="music_info_link">Additional</p>
+        <p class="music_info_label"><%= data.additionalname %></p>
       <% } %>
-      <p class="music_info_label">Surname</p>
-      <p class="music_info_link"><%= data.surname %></p>
-      <p class="music_info_label">Birthday</p>
-      <p class="music_info_link"><%= data.birthday %></p>
-      <p class="music_info_label">Profilephoto</p>
-      <p class="music_info_link">
+      <p class="music_info_link">Surname</p>
+      <p class="music_info_label"><%= data.surname %></p>
+      <p class="music_info_link">Birthday</p>
+      <p class="music_info_label"><%= data.birthday %></p>
+      <p class="music_info_link">Profilephoto</p>
+      <p class="music_info_label">
         <img src="/upload-profilephoto/<%= data.profilephoto %>" alt="">
       </p>
       <a href="/"><button class="primaryButton">Back to list</button></a>
