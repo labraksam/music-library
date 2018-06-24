@@ -24,12 +24,12 @@
 
       <% if (user) {
         if ((user.username == data.addSongProfile) || (user.admin == true)) { %>
-            <button id=js-remove data-id="<%= data._id %>" class="primaryButton removeButton">Remove</button>
+            <button id="js-remove" data-id="<%= data._id %>" class="primaryButton removeButton">Remove</button>
             <a href="/music/update-song/<%= data._id %>"><button class="primaryButton updateButton">Update</button></a>
       <% }
       } %>
     </section>
   </main>
-  <% include partials/tail.ejs%>
+  <% include partials/tail.ejs %>
 </body>
 </html>

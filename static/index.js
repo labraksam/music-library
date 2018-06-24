@@ -1,6 +1,8 @@
-var removebtn = document.getElementById('js-remove');
+var remove = document.getElementById('js-remove')
 
-removebtn.addEventListener('click', onremove)
+if (remove) {
+  remove.addEventListener('click', onremove)
+}
 
 function onremove(ev) {
   var node = ev.target
@@ -21,5 +23,4 @@ function onremove(ev) {
   function onfail() {
     throw new Error('Could not delete!')
   }
-
 }

@@ -153,8 +153,6 @@ function addsong(req, res, next) {
       res.status(409).send('This song already exists')
     }
   }
-
-
 }
 
 function updateform(req, res, next) {
@@ -208,26 +206,27 @@ function updatesong(req, res, next) {
 
 }
 
-function removesong(req, res, next) {
-  var id = req.params.id;
 
-  db.collection('music').deleteOne({
-    _id: mongo.ObjectID(id)
-  }, done)
+function removesong(req, res) {
+  var id = req.params.id
 
-  if (!req.session.user) {
-    res.status(401).send('You must be logged in')
-    return
-  }
+  // if (!req.session.user) {
+  //   res.status(401).send('You must be logged in')
+  //   return
+  // } else {
+    db.collection('music').deleteOne({
+      _id: mongo.ObjectID(id)
+    }, done)
 
-  function done(err) {
-    if (err) {
-      next(err)
-    } else {
-      res.json({status: 'ok'})
-      return
+    function done(err) {
+      if (err) {
+        next(err)
+      } else {
+        // res.json({status: 'ok'}) 
+        res.redirect('/')
+      }
     }
-  }
+  // }
 }
 
 function signupform(req, res, next) {
